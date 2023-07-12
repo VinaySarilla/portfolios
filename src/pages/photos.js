@@ -10,7 +10,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 const photos = () => {
   const [selected, setSelected] = useState(null);
-
+  const [loading, setLoading] = useState(true);
   const container = {
     hidden: { opacity: 0 },
     show: {
@@ -32,6 +32,7 @@ const photos = () => {
       class="grid grid-cols-2 lg:grid-cols-4 gap-4 p-4"
       variants={container}
       initial="hidden"
+      onClick={() => setLoading(true)}
       animate="show"
     >
       <motion.div
@@ -121,12 +122,34 @@ const photos = () => {
       {/* create modal on click */}
       {selected !== null ? (
         <motion.div
-          className="fixed top-0 left-0 flex items-center justify-center w-full h-full px-4 bg-black bg-opacity-80"
+          className="fixed top-0 left-0 flex flex-col items-center justify-center w-full h-full px-4 bg-black bg-opacity-80"
           onClick={() => setSelected(null)}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
         >
+          {loading && (
+            <svg
+              class="animate-spin mx-auto h-5 w-5 text-white my-auto mt-[20vh]"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <circle
+                class="opacity-25"
+                cx="12"
+                cy="12"
+                r="10"
+                stroke="currentColor"
+                stroke-width="4"
+              ></circle>
+              <path
+                class="opacity-75"
+                fill="currentColor"
+                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+              ></path>
+            </svg>
+          )}
           <motion.div
             initial={{ y: 100, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
@@ -137,7 +160,8 @@ const photos = () => {
               src={selected}
               width={500}
               height={800}
-              className="h-2/3 w-[90%] rounded-2xl object-cover"
+              className={`h-2/3 w-[90%] rounded-2xl object-cover`}
+              onLoad={() => setLoading(false)}
             />
           </motion.div>
         </motion.div>
