@@ -11,9 +11,33 @@ import Image from "next/image";
 const photos = () => {
   const [selected, setSelected] = useState(null);
 
+  const container = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        // staggerDirection: -1,
+      },
+    },
+  };
+
+  const item = {
+    hidden: { opacity: 0, y: 50 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+  };
+
   return (
-    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 p-4">
-      <div className="first:col-span-2 lg:first:col-span-4 first:mx-auto">
+    <motion.div
+      class="grid grid-cols-2 lg:grid-cols-4 gap-4 p-4"
+      variants={container}
+      initial="hidden"
+      animate="show"
+    >
+      <motion.div
+        variants={item}
+        className="first:col-span-2 lg:first:col-span-4 first:mx-auto"
+      >
         <Image
           class="h-[300px] max-w-full rounded-2xl object-cover"
           width={1000}
@@ -28,8 +52,8 @@ const photos = () => {
             layoutId="underline"
           ></motion.div>
         ) : null}
-      </div>
-      <div>
+      </motion.div>
+      <motion.div variants={item}>
         <Image
           height={500}
           width={300}
@@ -44,8 +68,8 @@ const photos = () => {
             layoutId="underline"
           ></motion.div>
         ) : null}
-      </div>
-      <div>
+      </motion.div>
+      <motion.div variants={item}>
         <Image
           height={500}
           width={300}
@@ -60,9 +84,9 @@ const photos = () => {
             layoutId="underline"
           ></motion.div>
         ) : null}
-      </div>
+      </motion.div>
 
-      <div>
+      <motion.div variants={item}>
         <Image
           height={500}
           width={300}
@@ -71,9 +95,9 @@ const photos = () => {
           alt=""
           onClick={() => setSelected(four.src)}
         />
-      </div>
+      </motion.div>
 
-      <div>
+      <motion.div variants={item}>
         <Image
           height={500}
           width={300}
@@ -82,9 +106,9 @@ const photos = () => {
           alt=""
           onClick={() => setSelected(five.src)}
         />
-      </div>
+      </motion.div>
 
-      <div>
+      <motion.div variants={item}>
         <Image
           height={500}
           width={300}
@@ -93,7 +117,7 @@ const photos = () => {
           alt=""
           onClick={() => setSelected(eight.src)}
         />
-      </div>
+      </motion.div>
       {/* create modal on click */}
       {selected !== null ? (
         <motion.div
@@ -118,7 +142,7 @@ const photos = () => {
           </motion.div>
         </motion.div>
       ) : null}
-    </div>
+    </motion.div>
   );
 };
 
