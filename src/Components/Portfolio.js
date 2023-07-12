@@ -7,6 +7,7 @@ import flipkart from "../../public/logos/flipkart.svg";
 import amazon from "../../public/logos/amazon.svg";
 import myntra from "../../public/logos/myntra.svg";
 import { motion } from "framer-motion";
+import { useRouter } from "next/router";
 const Portfolio = () => {
   let data = [
     {
@@ -32,7 +33,7 @@ const Portfolio = () => {
   ];
   return (
     <motion.div
-      className="my-4 lg:my-16 p-4 lg:px-20"
+      className="p-4 my-4 lg:my-16 lg:px-20"
       initial={{ y: 100, opacity: 0 }}
       whileInView={{
         opacity: 1,
@@ -46,7 +47,7 @@ const Portfolio = () => {
       }}
     >
       <h1 className="text-2xl font-bold text-zinc-800">Portfolio</h1>
-      <div className="flex flex-col items-center lg:grid lg:grid-cols-3 gap-8 mt-4">
+      <div className="flex flex-col items-center gap-8 mt-4 lg:grid lg:grid-cols-3">
         {data.map((item) => (
           <Card {...item} />
         ))}
@@ -58,19 +59,23 @@ const Portfolio = () => {
 export default Portfolio;
 
 const Card = ({ img, title, description, logos }) => {
+  const router = useRouter();
   return (
-    <div className="lg:w-[300px] rounded-lg cursor-pointer">
+    <div
+      className="lg:w-[300px] rounded-lg cursor-pointer"
+      onClick={() => router.push("/photos")}
+    >
       <img
         src={img}
-        className="aspect-square object-cover rounded-xl hover:scale-105 transition-all"
+        className="object-cover transition-all aspect-square rounded-xl hover:scale-105"
       />
       <div className="mt-4">
-        <p className="font-bold text-xl text-zinc-800">{title}</p>
-        <p className="text-xs text-zinc-600 mt-1">{description}</p>
+        <p className="text-xl font-bold text-zinc-800">{title}</p>
+        <p className="mt-1 text-xs text-zinc-600">{description}</p>
       </div>
       <div className="flex items-center gap-4 mt-2">
         {logos.map((logo) => (
-          <img src={logo.src} className="w-16 h-10 object-contain" />
+          <img src={logo.src} className="object-contain w-16 h-10" />
         ))}
       </div>
     </div>
