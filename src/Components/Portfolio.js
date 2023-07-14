@@ -31,6 +31,7 @@ const Portfolio = () => {
       logos: [amazon, myntra, flipkart],
     },
   ];
+
   return (
     <motion.div
       className="p-4 my-4 lg:my-16 lg:px-20"

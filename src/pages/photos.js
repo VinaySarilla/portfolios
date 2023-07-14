@@ -29,7 +29,7 @@ const photos = () => {
 
   return (
     <motion.div
-      class="grid grid-cols-2 lg:grid-cols-4 gap-4 p-4"
+      class="grid grid-cols-2 lg:grid-cols-4 gap-4 p-4 lg:px-36"
       variants={container}
       initial="hidden"
       onClick={() => setLoading(true)}

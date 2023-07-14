@@ -4,7 +4,7 @@ import { motion, animate, stagger } from "framer-motion";
 const HeroSection = (props) => {
   return (
     <motion.div className="lg:h-[500px] grid grid-cols-1 lg:grid-cols-2 lg:place-content-center mt-4 mb-8 gap-4 lg:px-10">
-      <div className="mx-4 flex flex-col justify-center items-start order-2 lg:order-1">
+      <div className="flex flex-col items-start justify-center order-2 mx-4 lg:order-1">
         <motion.div
           initial={{ y: 50, opacity: 0 }}
           whileInView={{
@@ -16,14 +16,14 @@ const HeroSection = (props) => {
           <h1 className="text-4xl font-semibold">Unlock Creativity</h1>
           <h1 className="text-4xl font-semibold">ShutterFame</h1>
 
-          <motion.div className="flex w-full justify-start gap-4 mt-4">
-            <button className="bg-zinc-800 p-3 px-4 rounded-lg text-white text-sm shadow-xl font-medium">
+          <motion.div className="flex justify-start w-full gap-4 mt-4">
+            <button className="p-3 px-4 text-sm font-medium text-white rounded-lg shadow-xl bg-zinc-800">
               Gallery
             </button>
 
-            <button className="bg-zinc-200 text-zinc-800 p-3 px-4 rounded-lg text-sm">
+            <a className="p-3 px-4 text-sm rounded-lg bg-zinc-200 text-zinc-800" href="/contact">
               Contact
-            </button>
+            </a>
           </motion.div>
         </motion.div>
       </div>

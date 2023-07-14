@@ -1,4 +1,5 @@
 import { BrandSection } from '@/Components/BrandSection'
+import Footer from '@/Components/Footer'
 import HeroSection from '@/Components/HeroSection'
 import Navbar from '@/Components/Navbar'
 import Portfolio from '@/Components/Portfolio'
@@ -11,6 +12,7 @@ const photography = () => {
         <HeroSection/>
         <BrandSection/>
         <Portfolio/>
+        <Footer/>
     </div>
   )
 }
